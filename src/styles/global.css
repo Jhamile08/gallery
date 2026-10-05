@@ -1,0 +1,46 @@
+/* Reset minimo + los pocos estilos que no pasan por Tamagui:
+   imagenes de fondo y parallax (background-attachment), que no existen
+   en el modelo de estilos de React Native / Tamagui. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1e1b1b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Portada --- */
+.hero-bg {
+  min-height: 100vh;
+  background-image: url('/IMG/fondo1recorte.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Logo de cabecera --- */
+.site-logo {
+  width: 250px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .site-logo {
+    width: 170px;
+  }
+}

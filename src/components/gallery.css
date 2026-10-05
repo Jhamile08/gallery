@@ -1,0 +1,93 @@
+/* Collage de la galeria: CSS Grid explicito, igual que en el sitio original.
+   Tamagui es flexbox (modelo React Native), asi que esta pieza se queda en CSS. */
+
+.collage {
+  margin-top: 20px;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(19, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  gap: 5px;
+}
+
+.collage-item {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.collage-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* En movil el collage de 19 columnas es ilegible: pasa a mosaico simple. */
+@media (max-width: 800px) {
+  .collage {
+    height: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 140px;
+    gap: 8px;
+  }
+
+  .collage > * {
+    /* anula la posicion explicita del collage de escritorio */
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .collage-item {
+    object-fit: cover;
+  }
+
+  .collage-label {
+    grid-column: span 2 !important;
+    min-height: 60px;
+  }
+}
+
+/* --- Orbita de entrada ---------------------------------------------------
+   Cada pieza gira una vuelta completa alrededor del centro del collage y
+   aterriza justo donde estaba. El vector hacia ese centro (--orbit-x/y) lo
+   mide useOrbitOnEnter al entrar la seccion en pantalla.
+
+   La composicion translate(v) rotate(a) translate(-v) rota la pieza alrededor
+   de un punto ajeno a ella; el rotate(-a) final la mantiene derecha mientras
+   recorre la orbita. Con a = 1turn la matriz vuelve a ser la identidad, asi
+   que el aterrizaje es exacto y no hace falta fijar un estado final. */
+
+.collage.is-orbiting > * {
+  animation: collage-orbit 2200ms cubic-bezier(0.45, 0, 0.25, 1)
+    var(--orbit-delay, 0ms) both;
+  will-change: transform;
+}
+
+@keyframes collage-orbit {
+  from {
+    transform: translate(var(--orbit-x, 0px), var(--orbit-y, 0px)) rotate(0turn)
+      translate(calc(-1 * var(--orbit-x, 0px)), calc(-1 * var(--orbit-y, 0px)))
+      rotate(0turn) scale(1);
+  }
+
+  50% {
+    transform: translate(var(--orbit-x, 0px), var(--orbit-y, 0px))
+      rotate(0.5turn)
+      translate(calc(-1 * var(--orbit-x, 0px)), calc(-1 * var(--orbit-y, 0px)))
+      rotate(-0.5turn) scale(0.86);
+  }
+
+  to {
+    transform: translate(var(--orbit-x, 0px), var(--orbit-y, 0px)) rotate(1turn)
+      translate(calc(-1 * var(--orbit-x, 0px)), calc(-1 * var(--orbit-y, 0px)))
+      rotate(-1turn) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collage.is-orbiting > * {
+    animation: none;
+  }
+}

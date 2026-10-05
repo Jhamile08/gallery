@@ -1,0 +1,85 @@
+/* Tarjetas de la seccion "Lugares".
+   La aparicion vive en el contenedor exterior (.place-reveal) y el hover en la
+   tarjeta: asi las dos animaciones no se pelean por la propiedad `transform`. */
+
+.place-reveal {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(38px);
+}
+
+.place-reveal.is-revealed {
+  animation: place-reveal 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes place-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(38px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Tamagui aporta los valores de hover (elevacion, sombra y borde) con
+   !important; la transicion que los suaviza se declara aqui, en un unico
+   sitio, en vez de depender de su prop `transition`. */
+
+.place-card {
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 340ms ease;
+}
+
+/* --- Panel de imagen -----------------------------------------------------
+   El zoom va en una capa interna absoluta: escalar el panel directamente lo
+   haria crecer por encima del texto, en vez de acercar la foto dentro de su
+   marco. */
+
+.place-image {
+  position: relative;
+  width: 60%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.place-image-zoom {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.place-card:hover .place-image-zoom {
+  transform: scale(1.07);
+}
+
+@media (max-width: 800px) {
+  .place-image {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .place-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .place-reveal.is-revealed {
+    animation: none;
+  }
+
+  .place-card,
+  .place-image-zoom,
+  .place-card:hover .place-image-zoom {
+    transition: none;
+    transform: none;
+  }
+}
