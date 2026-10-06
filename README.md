@@ -1,6 +1,6 @@
 # Zonas Culturales
 
-Sitio de galerías y museos de Medellín, migrado de HTML/CSS estático a **React 19 + TypeScript + Vite 8 + Tamagui 2**.
+Sitio de galerías y museos de Medellín, con **React 19 + TypeScript + Vite 8 + Tamagui 2**.
 
 ## Requisitos
 
