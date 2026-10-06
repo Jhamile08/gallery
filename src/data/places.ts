@@ -14,7 +14,7 @@ export type Place = {
 export const places: Place[] = [
   {
     key: 'duque',
-    image: '/IMG/duque-section.webp',
+    image: 'https://res.cloudinary.com/dmjjvcznx/image/upload/v1791226342/duque-section_juic0t.webp',
     imageFirst: true,
     panelColor: '$panelDark',
     links: {
@@ -26,7 +26,7 @@ export const places: Place[] = [
   },
   {
     key: 'policroma',
-    image: '/IMG/place6.jpg',
+    image: 'https://res.cloudinary.com/dmjjvcznx/image/upload/v1791226347/place7_m1lqdh.jpg',
     imageFirst: false,
     panelColor: '$panelMid',
     links: {
@@ -38,7 +38,7 @@ export const places: Place[] = [
   },
   {
     key: 'museo',
-    image: '/IMG/place5.jpg',
+    image: 'https://res.cloudinary.com/dmjjvcznx/image/upload/v1791226348/place5_mdah8e.jpg',
     imageFirst: true,
     panelColor: '$panelLight',
     links: {

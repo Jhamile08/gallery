@@ -30,7 +30,7 @@ export type Dictionary = {
 export const translations: Record<Lang, Dictionary> = {
   es: {
     htmlLang: 'es',
-    logo: '/IMG/Destinos_Alternativos_Logo.png',
+    logo: 'https://res.cloudinary.com/dmjjvcznx/image/upload/v1791226341/Destinos_Alternativos_Logo_svugcw.png',
     nav: { gallery: 'Galeria', places: 'Lugares', contact: 'Contacto' },
     languageToggle: '🌐Idioma',
     heroTitle: ['Zonas', 'Culturales'],
@@ -75,7 +75,7 @@ export const translations: Record<Lang, Dictionary> = {
   },
   en: {
     htmlLang: 'en',
-    logo: '/IMG/Alternative_Destinations_Logo_White.png',
+    logo: 'https://res.cloudinary.com/dmjjvcznx/image/upload/v1791226341/Alternative_Destinations_Logo_White_sesvnr.png',
     nav: { gallery: 'Gallery', places: 'Places', contact: 'Contact' },
     languageToggle: '🌐Language',
     heroTitle: ['Cultural', 'Zones'],
